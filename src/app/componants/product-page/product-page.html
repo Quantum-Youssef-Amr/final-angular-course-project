@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<div class="Main-continer">
+    <app-pill [text]="'Product pages'" [state]="'blue'"></app-pill>
+    <h2>E-commerce Shop Pages</h2>
+    <p>"Shop pages" typically refer to the main pages on e-commerce websites where users can browse and explore products.</p>
+    <div class="cardHolder">
+        @for (item of cardData; track $index) {
+            <app-type-one-card [cardinfo]="cardData[$index]"></app-type-one-card>
+        }
+    </div>
+</div>

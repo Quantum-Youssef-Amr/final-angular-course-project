@@ -1,0 +1,23 @@
+<header>
+    <nav>
+        <span>
+            <img class="arrow-btn nav-btn" src="#">
+            <label class="arrow-title nav-btn">View theme info</label>
+        </span>
+        <span>
+            <img class="pc-version nav-btn" src="#">
+            <img class="Mobile-version nav-btn" src="#">
+            <img class="mode-indecator nav-btn" src="#">
+        </span>
+        <span>
+            <span class="dropdown-btn nav-btn" (click)="ToggleDropDown()">dropdown</span>
+            <div [class.hidden-drop-down]="!isDropDownOpen" class="license-dropdown" (mouseleave)="OnMouseExit()" (mouseenter)="OnMouseEnter()">
+                @for (item of licenses; track $index) {
+                    <div>
+                        <app-dropdown-item [plan]="item"></app-dropdown-item>
+                    </div>
+                }
+            </div>
+        </span>
+    </nav>
+</header>

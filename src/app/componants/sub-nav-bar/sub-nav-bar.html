@@ -1,0 +1,20 @@
+<div class="main-container">
+    <nav>
+        <span class="logo-title">
+            <span class="titlecont">
+                <img src="assets/images/freshcart-logo.png" class="site-logo">
+                <label class="MainTitle">
+                    FreshCart
+                </label>
+            </span>
+        </span>
+        <span class="nav-btns">
+            <ul>
+                <li [class.selected]="selected==0" [class.show]="showbtnlist" (click)="Select(0)">Documentation</li>
+                <li [class.selected]="selected==1" [class.show]="showbtnlist" (click)="Select(1)">Support</li>
+                <li [class.selected]="selected==2" [class.show]="showbtnlist" (click)="Select(2)">Purchase</li>
+                <li class="collapse-btn" (click)="showbtns()">more</li>
+            </ul>
+        </span>
+    </nav>
+</div>

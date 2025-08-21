@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<div class="Main-continer">
+    <app-pill [text]="'Awesome'" [state]="'yellow'"></app-pill>
+    <h2>FreshCart Theme Features</h2>
+    <p>We provide impressive features for your website. You can easily build your store and e-commerce website. You will love it.</p>
+    <div class="cardHolder">
+        @for (item of cardinfo; track $index) {
+            <app-type-three-card [cardInfo]="cardinfo[$index]"></app-type-three-card>
+        }
+    </div>
+</div>

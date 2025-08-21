@@ -1,0 +1,17 @@
+<div class="main-container">
+    <div class="header">
+        <label>{{plan.name}}</label>
+        <label>${{plan.priceing}}.00</label>
+    </div>
+    <ul class="banifits-list">
+        @for (item of plan.banifits; track $index) {
+            <li>
+                {{plan.banifits[$index]}}
+            </li>
+        }
+    </ul>
+    <div>
+        <label>Read the full </label>
+        <a href="#">{{plan.name}}</a>
+    </div>
+</div>

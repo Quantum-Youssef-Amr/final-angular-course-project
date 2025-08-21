@@ -1,0 +1,23 @@
+.pill {
+  font-weight: bolder;
+  text-align: center;
+  border-radius: 25px;
+  padding: 0.5em 1em;
+  margin: 4em;
+  margin-bottom: 1em;
+}
+
+.greenpill {
+  color: #084208 !important;
+  background-color: #cef0cf !important;
+}
+
+.bluepill {
+  background-color: #cce1fe !important;
+  color: #002b63 !important;
+}
+
+.yellowpill {
+  background-color: #fff3cd !important;
+  color: #664d03 !important;
+}

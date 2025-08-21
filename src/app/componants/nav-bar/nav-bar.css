@@ -1,0 +1,55 @@
+header {
+  display: none;
+  /* display: flex; */
+  flex-direction: row;
+}
+
+nav {
+  height: 3em;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: #b0b5b9;
+  border-bottom: solid 3px #7854ab;
+
+  padding: 0.5rem 1rem;
+
+  > span {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.license-dropdown {
+  right: 0rem;
+  top: 2.5rem;
+
+  position: absolute;
+  display: grid;
+  gap: 1px;
+
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #222;
+}
+
+.hidden-drop-down {
+  visibility: collapse;
+}
+
+.gap-color {
+  background-color: #222;
+}
+
+.nav-btn {
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    color: #222;
+  }
+}

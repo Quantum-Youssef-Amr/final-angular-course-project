@@ -1,0 +1,24 @@
+.container {
+  padding: 4em 2em;
+  margin: 0px;
+  background-color: #fff;
+  height: 10em;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 2.5rem;
+    height: auto;
+  }
+
+  h3 {
+    color: #21313c;
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 18px;
+    color: #5c6c75;
+  }
+}

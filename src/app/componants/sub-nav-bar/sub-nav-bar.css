@@ -1,0 +1,103 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+
+  > nav {
+    width: 100%;
+    display: inherit;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    transition: height 8s linear;
+
+    .MainTitle {
+      font-size: 23px;
+      font-weight: bolder;
+    }
+
+    .logo-title {
+      height: 100%;
+    }
+
+    .titlecont {
+      display: flex;
+      height: fit-content;
+      justify-content: center;
+      align-items: center;
+      margin: 0.5em;
+    }
+
+    .nav-btns {
+      display: grid;
+    }
+
+    img {
+      margin: 0px !important;
+    }
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    li {
+      cursor: pointer;
+      padding: 1em;
+      text-align: center;
+      border-radius: 5px;
+      width: fit-content;
+      user-select: none;
+      transition: background-color 0.1s linear;
+
+      &:hover {
+        color: #0bad0a;
+      }
+    }
+
+    @media (max-width: 700px) {
+      > span {
+        align-items: flex-start;
+      }
+      ul {
+        visibility: collapse;
+        flex-direction: column-reverse;
+      }
+
+      .collapse-btn {
+        padding: 0.5em;
+        border: solid 2px #0bad0a;
+        width: 5em;
+        font-weight: bolder;
+        font-size: 16px;
+        visibility: visible !important;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .collapse-btn {
+        visibility: collapse !important;
+      }
+    }
+  }
+}
+
+.show {
+  visibility: visible !important;
+}
+
+.selected {
+  background-color: rgb(54, 181, 54);
+  color: #eee;
+  font-weight: bolder;
+
+  &:hover {
+    background-color: rgb(43, 142, 43) !important;
+    color: #fff !important;
+  }
+}
+
+.logo-title {
+  font-size: 45px !important;
+}

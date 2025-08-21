@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="Main-continer">
+<app-pill [text]="'Features'" [state]="'green'"></app-pill>
+<h2>FreshCart E-commerce Features</h2>
+    <div class="card-container">
+        <div class="cardHolder">
+            @for (item of cards; track $index) {
+                <app-type-two-card [cardInfo]="cards[$index]"></app-type-two-card>
+            }
+        </div>
+    </div>
+</div>

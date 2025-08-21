@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  border: solid 2px #e5e5e5;
+  border-radius: 10px;
+  width: 363px;
+  height: 270px;
+  transition: box-shadow 0.1s linear;
+
+  &:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+label {
+  margin: 1em 0em;
+  /* font-weight: bolder; */
+  justify-self: flex-start !important;
+  align-self: flex-start !important;
+
+  &:hover {
+    color: #0bad0a;
+  }
+}
