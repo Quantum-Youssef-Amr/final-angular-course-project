@@ -1,9 +1,10 @@
 .pill {
-  font-weight: bolder;
+  font-weight: lighter;
   text-align: center;
+  font-size: 0.9rem;
   border-radius: 25px;
   padding: 0.5em 1em;
-  margin: 4em;
+  margin: 3em;
   margin-bottom: 1em;
 }
 

@@ -1,136 +1,161 @@
-import { Injectable } from '@angular/core';
-import { card } from '../types/card.type';
+import { EventEmitter, inject, Injectable, signal } from '@angular/core';
+import { ApiResponce, card } from '../types/card.type';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CardsData {
-  homeLayoutCards: Array<card> = [
-    {
-      imageSrc: "assets/images/home-page-1.jpg",
-      title: "Default",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/home-page-2.jpg",
-      title: "Modern",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/home-page-3.jpg",
-      title: "Creative",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/home-page-4.jpg",
-      title: "Local Store",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/home-page-5.jpg",
-      title: "Minimalist",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/homepage-coming-soon.jpg",
-      title: "Coming Soon",
-      discraption: ""
-    }
-  ]
-  
-  featuresCards: Array<card> = [
-    {
-      imageSrc: "assets/images/feature-1.png",
-      title: "Mini Cart",
-      discraption: "A \"mini cart\" is a design element commonly found in e-commerce websites and online shopping experiences. It provides a summarized view of the items a user has added to their shopping cart without redirecting them to a separate cart page."
-    },
-    {
-      imageSrc: "assets/images/feature-2.png",
-      title: "Quick view",
-      discraption: "\"Quick view\" is a feature commonly implemented in e-commerce websites to provide users with a fast and convenient way to preview product details without leaving the current page."
-    },
-    {
-      imageSrc: "assets/images/feature-3.png",
-      title: "Filter / Sorting Options",
-      discraption: "Filter options are crucial for helping users refine and narrow down their search or exploration of content on websites, particularly in e-commerce, product listings, and content-heavy platforms."
-    },
-    {
-      imageSrc: "assets/images/feature-4.png",
-      title: "Category Dropdown",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/feature-5.png",
-      title: "Mega Menu",
-      discraption: "A mega menu is a large, multi-column drop-down menu that typically displays a variety of options and information, providing an efficient and organized way to navigate through a website's content."
-    }
-  ]
-  
-  pageCards: Array<card> = [
-    {
-      imageSrc: "assets/images/shop-grid-filter.jpg",
-      title: "Shop Grid - Filter",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/shop-list-filter.jpg",
-      title: "Shop List Filter",
-      discraption: ""
-    },
-    {
-      imageSrc: "assets/images/shop-wide.jpg",
-      title: "Shop Wide",
-      discraption: ""
-    }
-  ]
+  homeLayoutCards = signal<Array<card>>([]);
+  featuresCards = signal<Array<card>>([]);
+  pageCards = signal<Array<card>>([]);
+  themes = signal<Array<card>>([]);
 
-  themes: Array<card> = [
-    {
-      imageSrc: "assets/images/logo-1.png",
-      title: "Built with Next.js",
-      discraption: "Every code snippet you ll get is written in Next.js React in a way that seamlessly integrates with UI."
-    },
-    {
-      imageSrc: "assets/images/logo-2.png",
-      title: "React Bootstrap",
-      discraption: "The most popular front-end framework, rebuilt for React. React-Bootstrap replaces the Bootstrap JavaScript."
-    },
-    {
-      imageSrc: "assets/images/logo-3.png",
-      title: "SCSS Bootstrap",
-      discraption: "Take advantage of variables, maps, mixins, and functions to help you build faster and customize your project."
-    },
-    {
-      imageSrc: "assets/images/logo-4.png",
-      title: "Admin Dashboard",
-      discraption: "Download the Best Nextjs Admin Templates. Create your stunning and Beautiful web apps for the ecommerce store."
-    },
-    {
-      imageSrc: "assets/images/logo-5.png",
-      title: "Slick Carousel",
-      discraption: "Slick is a responsive carousel that supports multiple breakpoints, CSS3 transitions, touch events/swiping & much more!"
-    },
-    {
-      imageSrc: "assets/images/logo-6.png",
-      title: "Well Documented",
-      discraption: "We provide intuitive and detailed documentation, you will certainly master this template easily."
-    },
-    {
-      imageSrc: "assets/images/logo-7.png",
-      title: "High Performance",
-      discraption: "Our coding standards ensures this theme is lighter and it will loads your site faster."
-    },
-    {
-      imageSrc: "assets/images/logo-8.png",
-      title: "Highly Customizable?",
-      discraption: "Create something unique & beautifully tailored to your needs In only a couple minutes."
-    },
-    {
-      imageSrc: "assets/images/logo-9.png",
-      title: "Free Lifetime Updates",
-      discraption: "We work hard every day to perfect the products. You will get it for free for a lifetime."
-    },
-  ];
+  JsonData = signal<ApiResponce | null>(null);
+  apikey = 'f8b3f2c615dd44b1a38141628252908';
+  HTTP = inject(HttpClient);
 
+  getWeatherFromApi(DayCount = 6, location = 'Alexandria,EG') {
+    return this.HTTP.get<ApiResponce>(
+      `https://api.weatherapi.com/v1/forecast.json?key=${this.apikey}&q=${location}&days=${DayCount}&units=metric`
+    );
+  }
+
+  formateData(Data: ApiResponce | null) {
+    if (Data == null) return;
+
+    // the day data from the api
+    this.homeLayoutCards.set([
+      {
+        imageSrc:
+          'assets/images/' + this.JsonData()?.current.condition.code + '.svg',
+        title: this.JsonData()?.current.condition.text,
+        discraption: '',
+      },
+      {
+        imageSrc: 'assets/images/c.svg',
+        title:
+          this.JsonData()?.forecast.forecastday[0].day.maxtemp_c.toString() +
+          ' C',
+        discraption: '',
+      },
+      {
+        imageSrc: 'assets/images/wi-night-clear.svg',
+        title:
+          this.JsonData()?.forecast.forecastday[0].day.mintemp_c.toString() +
+          ' C',
+        discraption: '',
+      },
+      {
+        imageSrc: 'assets/images/wi-humidity.svg',
+        title: this.JsonData()?.current.humidity.toString() + ' %',
+        discraption: undefined,
+      },
+      {
+        imageSrc: 'assets/images/wi-strong-wind.svg',
+        title:
+          this.JsonData()?.current.wind_kph.toString() +
+          ' Km\\h ' +
+          this.JsonData()?.current.wind_dir.toString(),
+        discraption: '',
+      },
+      {
+        imageSrc: 'assets/images/wi-sunset.svg',
+        title:
+          this.JsonData()?.forecast.forecastday[0].day.uv.toString() + ' UV',
+        discraption: undefined,
+      },
+    ]);
+
+    // 5 day forcast
+    let featuresCard: Array<card> = [];
+    for (
+      let day = 1;
+      day < (this.JsonData()?.forecast?.forecastday?.length ?? 0);
+      day++
+    ) {
+      let rawDate = this.JsonData()?.forecast.forecastday[day].date ?? "00-00-0000";
+      let dateObj = new Date(rawDate);
+      featuresCard.push({
+        imageSrc:
+          'assets/images/' +
+          this.JsonData()?.forecast.forecastday[
+            day
+          ].day.condition.code.toString() +
+          '.svg',
+        title:
+          dateObj.toLocaleDateString(
+            'en-US',
+            { weekday: 'long' }
+          ) +
+          ' ' +
+          dateObj.toLocaleDateString(
+            'en-US'
+          ),
+        discraption:
+          'State: ' +
+          this.JsonData()?.forecast.forecastday[
+            day
+          ].day.condition.text.toString() + 
+          "\n" +
+          'max temperature: ' +
+          this.JsonData()?.forecast.forecastday[day].day.maxtemp_c +
+          ' C\n' +
+          'min temperature: ' +
+          this.JsonData()?.forecast.forecastday[day].day.mintemp_c +
+          ' C\n' +
+          'Wind: ' +
+          this.JsonData()?.forecast.forecastday[day].day.maxwind_kph +
+          ' KM/H\n' +
+          'UV: ' +
+          this.JsonData()?.forecast.forecastday[day].day.uv,
+      });
+    }
+    this.featuresCards.set(featuresCard);
+
+    // advance day info
+    this.pageCards.set([
+      {
+        imageSrc: "assets/images/wi-barometer.svg",
+        title: Math.round(((this.JsonData()?.current.pressure_mb ?? 0)/ 760 ) * 10) / 10 + " atm",
+        discraption: undefined
+      },
+      {
+        imageSrc: "assets/images/wi-moon-alt-first-quarter.svg",
+        title: this.JsonData()?.forecast.forecastday[0].astro.moon_phase,
+        discraption: undefined
+      },
+      {
+        imageSrc: "assets/images/wi-alien.svg",
+        title: "0% Chance of Aliens",
+        discraption: undefined
+      }
+    ])
+
+    let hourlyData: Array<card> = [];
+    for (let hour = 0; hour < (this.JsonData()?.forecast.forecastday[0].hour.length ?? 0); hour++) {
+      hourlyData.push({
+        imageSrc: "assets/images/wi-time-" + (hour % 12) + ".svg",
+        title: (hour % 12 == 0 ? "12" : hour % 12).toString() + (hour>12?" PM":" AM"),
+        discraption: "temperature: " + this.JsonData()?.forecast.forecastday[0].hour[hour].temp_c + " C\n" + 
+        "wind: " +this.JsonData()?.forecast.forecastday[0].hour[hour].wind_kph + " KM/H " + this.JsonData()?.forecast.forecastday[0].hour[hour].wind_dir
+      })
+    }
+
+    this.themes.set(hourlyData);
+
+  }
+
+  saveData(Data: ApiResponce | null) {
+    if (Data == null) return;
+
+    let currentDate = new Date();
+    localStorage.setItem(
+      `${currentDate.getDate()}-
+      ${currentDate.getMonth()}
+      -${currentDate.getFullYear()}`,
+      JSON.stringify(Data)
+    );
+  }
 }

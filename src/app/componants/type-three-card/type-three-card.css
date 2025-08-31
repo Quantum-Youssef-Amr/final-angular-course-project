@@ -1,7 +1,7 @@
 .container {
   padding: 4em 2em;
   margin: 0px;
-  background-color: #fff;
+  background-color: #111;
   height: 10em;
   justify-content: center;
   align-items: center;
@@ -12,13 +12,14 @@
   }
 
   h3 {
-    color: #21313c;
+    color: #fff;
     font-weight: bold;
     font-size: 22px;
   }
 
   p {
     font-size: 18px;
-    color: #5c6c75;
+    color: #ccc;
+    white-space: pre-line;
   }
 }

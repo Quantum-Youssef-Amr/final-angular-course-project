@@ -5,7 +5,14 @@
   align-items: center;
   padding-top: 3em;
 
-  background-color: #f1f3f2;
+  min-height: 25em;
+
+  background-color: #fff;
+  background-image: url(../../../assets/images/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(10px);
 
   * {
     text-align: center;
@@ -13,9 +20,15 @@
     margin: 0px;
     margin-bottom: 1rem !important;
   }
+
+  h1 {
+    color: #fff;
+  }
+
   h4 {
-    color: #697881;
+    color: #eee;
     font-weight: lighter;
+    margin-bottom: 2em !important;
   }
 
   img {

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <div class="Main-continer">
-    <app-pill [text]="'Ready-to-Use'" [state]="'green'"></app-pill>
-    <h2>Stunning Homepage Layouts</h2>
-    <p>Clean and Minimalistic Homepage Design for your online stores. Simplified layouts with ample white space for a clean and modern look. Minimalist navigation menus and straightforword user interface</p>
+    <app-pill [text]="'today\'s weather'" [state]="'green'"></app-pill>
+    <h2>{{cardServise.JsonData()?.location?.name}}, {{cardServise.JsonData()?.location?.country}}</h2>
+    <p>{{currentDate  | date:'fullDate'  }}</p>
     <div class="cardHolder">
-        @for (item of sectionsCards; track $index) {
-            <app-type-one-card [cardinfo]="sectionsCards[$index]"></app-type-one-card>
+        @for (item of cardServise.homeLayoutCards(); track $index) {
+            <app-type-one-card [cardinfo]=" cardServise.homeLayoutCards()[$index]"></app-type-one-card>
         }
     </div>
 </div>

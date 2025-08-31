@@ -11,5 +11,4 @@ import { TypeOneCard } from "../type-one-card/type-one-card";
 })
 export class ProductPage {
   cardDataService = inject(CardsData);
-  cardData = this.cardDataService.pageCards;
 }

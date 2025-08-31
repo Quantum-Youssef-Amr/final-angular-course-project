@@ -6,7 +6,7 @@ footer {
   text-align: center;
   font-size: 16px;
 
-  background-color: #001e2b;
+  background-color: #111;
   height: max-content;
   width: auto;
 
@@ -29,18 +29,24 @@ footer {
 
   h4,
   label {
-    color: #5c6c75;
+    color: #aaa;
     font-weight: lighter;
   }
 
   button {
     padding: 0.8rem 1rem;
-    background-color: #0aad0a;
+    background-color: #222;
     border: solid 0px white;
     border-radius: 5px;
     color: #fff;
     font-size: 16px;
     font-weight: 700;
+    transition: background-color 0.1s linear;
+
+    &:hover {
+      color: #222;
+      background-color: #aaa;
+    }
   }
 
   h4 {
@@ -49,6 +55,6 @@ footer {
 
   a {
     text-decoration: none;
-    color: #0aad0a;
+    color: #fff;
   }
 }

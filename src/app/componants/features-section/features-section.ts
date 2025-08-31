@@ -12,5 +12,4 @@ import { TypeTwoCard } from '../type-two-card/type-two-card';
 })
 export class FeaturesSection {
   cardDataServise = inject(CardsData);
-  cards: Array<card> = this.cardDataServise.featuresCards;
 }

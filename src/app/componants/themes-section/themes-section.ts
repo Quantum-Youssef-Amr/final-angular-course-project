@@ -11,5 +11,4 @@ import { TypeThreeCard } from '../type-three-card/type-three-card';
 })
 export class ThemesSection {
   CardDataService = inject(CardsData);
-  cardinfo = this.CardDataService.themes;
 }

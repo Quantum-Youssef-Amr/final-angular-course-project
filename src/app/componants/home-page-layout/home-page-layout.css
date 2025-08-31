@@ -1,11 +1,17 @@
 .Main-continer {
   display: flex;
   flex-direction: column;
+
   justify-content: center;
   align-items: center;
-  padding: 5em;
-  max-width: 90rem;
-  width: auto;
+  justify-self: center;
+
+  padding: 2em;
+
+  div {
+    max-width: 90rem;
+    width: auto;
+  }
 
   p {
     max-width: 60rem;
@@ -13,6 +19,7 @@
     margin-bottom: 2em;
     margin-top: 1em;
     padding: 0.5em;
+    white-space: pre-line;
   }
 
   h2 {

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <div class="Main-continer">
-<app-pill [text]="'Features'" [state]="'green'"></app-pill>
-<h2>FreshCart E-commerce Features</h2>
+<app-pill [text]="'weather forcast'" [state]="'green'"></app-pill>
+<h2>5-Day Weather Forecast</h2>
     <div class="card-container">
         <div class="cardHolder">
-            @for (item of cards; track $index) {
-                <app-type-two-card [cardInfo]="cards[$index]"></app-type-two-card>
+            @for (item of cardDataServise.featuresCards(); track $index) {
+                <app-type-two-card [cardInfo]="cardDataServise.featuresCards()[$index]"></app-type-two-card>
             }
         </div>
     </div>
